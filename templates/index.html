@@ -6,6 +6,10 @@
     <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"type="text/javascript" charset="utf-8"></script>
 
 <style>
+.flex-container {
+    display: flex;
+    flex-direction: row;
+}
 </style>
 
 </head>
@@ -16,8 +20,18 @@
 <a href="/order"> Order </a>
 <br>
 
-<div id="mapContainer" style="width: 800px; height: 600px" ></div>
+<div class="flex-container">
+    <div id="mapContainer" style="width: 800px; height: 600px" ></div>
 
+    <div>
+        <header>
+            <h2>Local Requests</h1>
+        </header>
+        <ul id="foodRequests">
+            <li>TEST</li>
+        </ul>
+    </div>
+</div>
 
 <script>
 
@@ -41,21 +55,98 @@ var map = new H.Map(
     document.getElementById('mapContainer'),
     maptypes.vector.normal.map,
     {
-        zoom: 10,
+        zoom: 13,
         center: { lat: latitude, lng: longitude }
-    });
+    }
+);
 
-// add all coordinates in the array to the map as markers.
-coordinates.forEach(function(pair) {
-    var marker = new H.map.Marker({ lat: pair[0], lng: pair[1] });
-    map.addObject(marker);
+function addDomMarker(map, latitude, longitude, num) {
+  var outerElement = document.createElement('div'),
+      innerElement = document.createElement('div');
+
+  outerElement.style.userSelect = 'none';
+  outerElement.style.webkitUserSelect = 'none';
+  outerElement.style.msUserSelect = 'none';
+  outerElement.style.mozUserSelect = 'none';
+  outerElement.style.cursor = 'default';
+
+  innerElement.style.font = 'normal 12px arial';
+  innerElement.style.lineHeight = '12px'
+
+  innerElement.style.paddingTop = '2px';
+  innerElement.style.paddingLeft = '4px';
+  innerElement.style.width = '20px';
+  innerElement.style.height = '20px';
+
+  innerElement.style.marginTop = '-10px';
+  innerElement.style.marginLeft = '-10px';
+  innerElement.innerHTML = '<img src="https://www.moha-swiss.com/wp-content/uploads/2014/09/Map-Marker-Marker-Outside-Chartreuse-icon.png" height="20" width="20" />';
+
+  outerElement.appendChild(innerElement);
+
+  function changeColor(evt) {
+    console.log("color changed.");
+    li = document.getElementById("request"+num);
+    li.style.color = "red";
+  };
+
+  function resetColor(evt) {
+    console.log("color reset.");
+    li = document.getElementById("request"+num);
+    li.style.color = "black";
+  };
+
+  var domIcon = new H.map.DomIcon(outerElement, {
+    onAttach: function(clonedElement, domIcon, domMarker) {
+      clonedElement.addEventListener('mouseover', changeColor);
+      clonedElement.addEventListener('mouseout', resetColor);
+    },
+    onDetach: function(clonedElement, domIcon, domMarker) {
+      clonedElement.removeEventListener('mouseover', changeColor);
+      clonedElement.removeEventListener('mouseout', resetColor);
+    }
+  });
+
+  var marker = new H.map.DomMarker({lat: latitude, lng: longitude}, {
+    icon: domIcon
+  });
+  map.addObject(marker);
+}
+
+// retrieve current JSON array of food request objects
+// format: { coordinates : [latitude, longitude], name : <name>, income : <income>, address : <address>, food : <food> }
+var json_data = [];
+
+fetch("http://localhost:5000/getdata").then(function(response) {
+    response.text().then(function(text) {
+        json_data = JSON.parse(text);
+
+        // add all coordinates in the array to the map as markers.
+        json_data.forEach(function(obj) {
+            // add a new marker to the map for each new set of coordinates
+            const div = document.createElement('div');
+            div.innerHTML = 'abc';
+            icon = new H.map.DomIcon(div);
+            var marker = new H.map.Marker({ lat: obj.coordinates[0], lng: obj.coordinates[1] });
+            
+            // update the list of requests on the right-hand side of the page
+            var ul = document.getElementById("foodRequests");
+            var li = document.createElement("li");
+            var children = ul.children.length + 1
+            li.setAttribute("id", "request"+children)
+            request_string = obj.name + "<br>" + obj.income + "<br>" + obj.address + "<br>" + obj.food;
+            console.log(request_string);
+            // li.appendChild(document.createTextNode(request_string));
+            li.innerHTML = request_string;
+            ul.appendChild(li);
+            
+            // make it so that hovering over the marker creates a popup bubble
+            // and lights up the corresponding info box
+            addDomMarker(map, obj.coordinates[0], obj.coordinates[1], children);
+        });
+    });
 });
 
-
-// the following commented-out code is just for reference.
-/* var marker = new H.map.Marker({ lat: latitude, lng: longitude });
-map.addObject(marker); */
-        
 </script>
 
 
