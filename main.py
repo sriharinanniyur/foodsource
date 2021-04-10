@@ -1,7 +1,9 @@
 from flask import *
 import csv
-app = Flask(__name__)
+from flask_googlemaps import *
 
+app = Flask(__name__)
+GoogleMaps(app, key="AIzaSyAMIY4ozo4newtFCoD-7wno2dJlHvSDwFc") 
 
 @app.route('/')
 def home():
