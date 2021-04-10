@@ -44,20 +44,20 @@
     <a href="/"> &#60; Home </a>
     <h1>Order</h1>
     <div class="container">
-        <form action="/action_page.php">
+        <form action="{{ url_for('order') }}" method="POST">
           <label for="fname">Full Name</label>
-          <input type="text" id="fname" name="firstname" placeholder="Full name..">
+          <input type="text" id="fname" name="fname" placeholder="Full name..">
           
 
           <!-- Income categories from https://www.thebalance.com/definition-of-middle-class-income-4126870 -->
           <label for="income">Income Category</label>
           <select id="income" name="income">
-            <option value="australia">Less than $20,000</option>
-            <option value="australia">$20,000 - $44,999</option>
-            <option value="australia">$45,000 - $139,999</option>
-            <option value="australia">$140,000 - $149,999</option>
-            <option value="australia">$150,000 - $199,999</option>
-            <option value="australia">$200,000+</option>
+            <option value="opt1">Less than $20,000</option>
+            <option value="opt2">$20,000 - $44,999</option>
+            <option value="opt3">$45,000 - $139,999</option>
+            <option value="opt4">$140,000 - $149,999</option>
+            <option value="opt5">$150,000 - $199,999</option>
+            <option value="opt6">$200,000+</option>
           </select>
 
 
@@ -69,8 +69,8 @@
           
           
       
-          <label for="notes">Grocery List</label>
-          <textarea id="notes" name="notes" style="height:200px"></textarea>
+          <label for="food">Grocery List</label>
+          <textarea id="food" name="food" style="height:200px"></textarea>
       
           <input type="submit" value="Submit">
         </form>
