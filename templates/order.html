@@ -5,8 +5,75 @@
     <title>FoodSource</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
+<style>
+
+
+    input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+    }
+
+    input[type=submit] {
+    background-color: #43c7ff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    }
+
+    input[type=submit]:hover {
+    background-color: #327e9a;
+    }
+
+    .container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    float: center;
+    width: 60%;
+    }
+</style>
 <body>
     <a href="/"> &#60; Home </a>
     <h1>Order</h1>
+    <div class="container">
+        <form action="/action_page.php">
+          <label for="fname">Full Name</label>
+          <input type="text" id="fname" name="firstname" placeholder="Full name..">
+          
+
+          <!-- Income categories from https://www.thebalance.com/definition-of-middle-class-income-4126870 -->
+          <label for="income">Income Category</label>
+          <select id="income" name="income">
+            <option value="australia">Less than $20,000</option>
+            <option value="australia">$20,000 - $44,999</option>
+            <option value="australia">$45,000 - $139,999</option>
+            <option value="australia">$140,000 - $149,999</option>
+            <option value="australia">$150,000 - $199,999</option>
+            <option value="australia">$200,000+</option>
+          </select>
+
+
+          <label for="first-address">Address Line 1</label>
+          <input type="text" id="first-address" name="first-address">
+
+          <label for="second-address">Address Line 2</label>
+          <input type="text" id="second-address" name="second-address">
+          
+          
+      
+          <label for="notes">Grocery List</label>
+          <textarea id="notes" name="notes" style="height:200px"></textarea>
+      
+          <input type="submit" value="Submit">
+        </form>
+      </div>
 </body>
 </html>
