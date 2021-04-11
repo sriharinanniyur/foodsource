@@ -4,9 +4,20 @@
     <meta charset="utf-8" />
     <title>FoodSource</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap" rel="stylesheet">
 </head>
 <style>
 
+  h1 {
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+  }
+  .center {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+  }
 
     input[type=text], select, textarea {
     width: 100%;
@@ -37,12 +48,12 @@
     background-color: #f2f2f2;
     padding: 20px;
     float: center;
-    width: 60%;
     }
 </style>
 <body>
     <a href="/"> &#60; Home </a>
     <h1>Order</h1>
+    <div class="center">
     <div class="container">
         <form action="{{ url_for('order') }}" method="POST">
           <label for="fname">Full Name</label>
@@ -75,5 +86,6 @@
           <input type="submit" value="Submit">
         </form>
       </div>
+    </div>
 </body>
 </html>

@@ -5,8 +5,13 @@
     <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"type="text/javascript" charset="utf-8"></script>
     <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"type="text/javascript" charset="utf-8"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap" rel="stylesheet">
 <style>
-
+  h1 {
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+  }
   body {
     padding-left: 20px;
     padding-right: 20px;
@@ -38,7 +43,7 @@ ul {
 
 <body>
 
-<h1 style="font-weight: bold; text-align: center;">FOODSOURCE</h1>
+<h1>FoodSource</h1>
 <div><a href="/order" class="w3-button w3-indigo"> Request help here! </a></div>
 <br>
 
@@ -108,13 +113,13 @@ function addDomMarker(map, latitude, longitude, num) {
   function changeColor(evt) {
     console.log("color changed.");
     li = document.getElementById("request"+num);
-    li.style.color = "red";
+    li.style.backgroundColor = "yellow";
   };
 
   function resetColor(evt) {
     console.log("color reset.");
     li = document.getElementById("request"+num);
-    li.style.color = "black";
+    li.style.backgroundColor = "lightgreen";
   };
   function redirectToHelpPage(evt) {
     console.log("redirected to help page.");

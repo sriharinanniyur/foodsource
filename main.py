@@ -58,7 +58,8 @@ def order():
 
 @app.route('/help/<index>')
 def help_page(index):
-    return all_data[int(index) - 1] # need to subtract 1 because JS gives us index+1
+    data = all_data[int(index) - 1] # need to subtract 1 because JS gives us index+1
+    return render_template("help.html", data=data)
 # Aadit do ur thing here
 
 @app.route('/getdata')
