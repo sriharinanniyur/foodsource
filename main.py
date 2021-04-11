@@ -3,7 +3,7 @@ import csv
 from flask_googlemaps import *
 from geopy.geocoders import Nominatim
 import json
-import twilio_verify
+# import twilio_verify
 
 index = 1
 all_data = [
