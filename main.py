@@ -11,9 +11,17 @@ all_data = [
         "coordinates" : [37.314170, -121.773780],
         "name" : "John Smith",
         "income" : "Less than $20,000",
-        "address" : "4053 Carraci Lane San Jose",
-        "food" : "Bread, 1 loaf",
+        "address" : "4055 Carraci Lane San Jose",
+        "food" : "Bread (1 loaf), 4 Bananas, 3 Apples",
         "id": 0,
+    },
+    { # test object
+        "coordinates" : [37.320812, -121.779586],
+        "name" : "Raymond White",
+        "income" : "Less than $20,000",
+        "address" : "4058 Amarado Street San Jose",
+        "food" : "Pizza, broccoli, onions",
+        "id": 1,
     }
 ]
 
@@ -57,10 +65,7 @@ def order():
         print(data)
         all_data.append(data)
 
-        # saving data
-        with open('db/db.csv', 'a') as db_file:
-            employee_writer = csv.writer(db_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-            employee_writer.writerow(data)
+
         
     return render_template("order.html", errmsg="")
 

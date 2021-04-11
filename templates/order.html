@@ -9,9 +9,12 @@
 </head>
 <style>
 
-  h1, label, a, p {
+  h1, label, a {
     font-family: 'Raleway', sans-serif;
     text-align: center;
+  }
+  p {
+    font-family: 'Raleway', sans-serif;
   }
   a, a:visited {
     color: blue;
@@ -91,7 +94,8 @@
           <label for="food">Grocery List</label>
           <textarea id="food" name="food" style="height:200px"></textarea>
 
-          <label for="phone-number">Phone Number (SMS Verification)</label>
+          <p style="color: red">Optional for demo</p>
+          <label for="phone-number">Phone Number SMS Verification</label>
           <input type="tel" id="phone-number" name="phone-number">
           <button id="sendcode" onclick="sendCode();">Send Verification Code</button>
           
