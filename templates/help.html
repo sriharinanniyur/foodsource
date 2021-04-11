@@ -4,8 +4,14 @@
     <meta charset="utf-8" />
     <title>FoodSource</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap" rel="stylesheet">
 </head>
 <style>
+    h1, h2, h3 {
+        font-family: 'Raleway', sans-serif;
+        
+    }
     body {
         padding-left: 20px;
         padding-right: 20px;
@@ -13,10 +19,49 @@
     h1 {
         text-align: center;
     }
+    * {
+        box-sizing: border-box;
+        }
+
+    /* Create two equal columns that floats next to each other */
+    .column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+    content: "";
+    display: table;
+    clear: both;
+    }
+    
 </style>
 <body>
     <a href="/"> &#60; Home </a>
     <h1> Help {{data["name"]}}</h1>
-    <h2> Shopping List </h2>
+    
+
+    <div class="row">
+        <div class="column" style="background-color: #feff9c; border-style: solid; border-width: 2px">
+            <h2> Shopping List </h2>
+            <p> {{data["food"]}} </p>
+        </div>
+        <div class="column" style = "padding-left: 50px;" >
+            <h2> Get a Ride to Deliver</h2>
+            <iframe width="275" height="70" sandbox="allow-scripts allow-forms allow-top-navigation-by-user-activation"
+            src="https://cdn.lyft.com/static/widgets/embed.html?location_street_address=&location_city=&location_postal_code=&theme=&button_size=&referrer=&text_color="
+            frameborder=0></iframe>
+            <br>
+            <h2> Send Groceries </h2>
+            <a href="https://www.doordash.com/business/412816/?utm_source=partner-link&utm_medium=website&utm_campaign=412816&utm_content=red-l" target="_blank" title="Order Food Delivery with DoorDash" style="text-decoration: none"><div style="width:289px; height:59px; background-image: url(https://cdn.doordash.com/media/button/button_red_l.svg); color:transparent">Order Food Delivery with DoorDash</div></a>
+        </div>
+      </div>
+
+
+    
+
 </body>
 </html>

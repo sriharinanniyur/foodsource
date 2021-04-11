@@ -14,7 +14,7 @@ all_data = [
         "id": 0,
     }
 ]
-index = 1
+index = len(all_data)
 
 geolocator = Nominatim(user_agent="foodsource")
 
