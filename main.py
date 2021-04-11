@@ -3,7 +3,9 @@ import csv
 from flask_googlemaps import *
 from geopy.geocoders import Nominatim
 import json
+import twilio_verify
 
+index = 1
 all_data = [
     { # test object
         "coordinates" : [37.314170, -121.773780],
@@ -14,7 +16,6 @@ all_data = [
         "id": 0,
     }
 ]
-index = len(all_data)
 
 geolocator = Nominatim(user_agent="foodsource")
 
@@ -37,6 +38,13 @@ def order():
         location = geolocator.geocode(faddress)
         coords = [location.latitude, location.longitude]
         food = request.form["food"]
+        phone_num = request.form["phone-number"]
+        twilio_code = request.form["twilio-code"]
+
+        # this doesn't work for some reason, so we finna ignore it for now
+        # if twilio_verify.check_verification(phone_num, twilio_code) != "approved":
+            # return render_template("order.html", errmsg="Unrecognized verification code.")
+        global index
         data = {
             "coordinates" : coords,
             "name" : fname,
@@ -54,17 +62,21 @@ def order():
             employee_writer = csv.writer(db_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
             employee_writer.writerow(data)
         
-    return render_template("order.html")
+    return render_template("order.html", errmsg="")
 
 @app.route('/help/<index>')
 def help_page(index):
     data = all_data[int(index) - 1] # need to subtract 1 because JS gives us index+1
     return render_template("help.html", data=data)
-# Aadit do ur thing here
 
 @app.route('/getdata')
 def getdata():
     return json.dumps(all_data)
+
+@app.route('/send_twilio_code/<number>/<new_code>')
+def send_twilio_code(number):
+    twilio_verify.send_verification(str(number))
+    return number
 
 if __name__ == '__main__':
     app.run(debug=True)

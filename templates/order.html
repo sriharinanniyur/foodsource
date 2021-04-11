@@ -82,10 +82,26 @@
       
           <label for="food">Grocery List</label>
           <textarea id="food" name="food" style="height:200px"></textarea>
-      
+
+          <label for="phone-number">Phone Number (SMS Verification)</label>
+          <input type="tel" id="phone-number" name="phone-number">
+          <button id="sendcode" onclick="sendCode();">Send Verification Code</button>
+          
+          <label for="twilio-code">Twilio Verification Code</label>
+          <input type="text" id="twilio-code" name="twilio-code">
+          
           <input type="submit" value="Submit">
         </form>
       </div>
     </div>
+
+<script>
+function sendCode() {
+    phoneNumber = document.getElementById("phone-number").value;
+    var dummyRequest = new XMLHttpRequest();
+    dummyRequest.open("GET", "http://localhost:5000/send_twilio_code/"+phoneNumber, false); // false for synchronous request
+    dummyRequest.send(null);
+}
+</script>
 </body>
 </html>
