@@ -31,6 +31,7 @@ ul {
     list-style: none;
 };
 
+
 </style>
 
 </head>
@@ -100,7 +101,7 @@ function addDomMarker(map, latitude, longitude, num) {
 
   innerElement.style.marginTop = '-10px';
   innerElement.style.marginLeft = '-10px';
-  innerElement.innerHTML = '<img src="https://www.moha-swiss.com/wp-content/uploads/2014/09/Map-Marker-Marker-Outside-Chartreuse-icon.png" height="20" width="20" />';
+  innerElement.innerHTML = '<img src="https://www.moha-swiss.com/wp-content/uploads/2014/09/Map-Marker-Marker-Outside-Chartreuse-icon.png" height="30" width="30" />';
 
   outerElement.appendChild(innerElement);
 
@@ -160,7 +161,7 @@ fetch("http://localhost:5000/getdata").then(function(response) {
             var li = document.createElement("li");
             var children = ul.children.length + 1
             li.setAttribute("id", "request"+children)
-            request_string = obj.name + "<br>" + obj.income + "<br>" + obj.address + "<br>" + obj.food;
+            request_string = obj.name + "<br>" + obj.income + "<br>" + obj.address + "<br>" + obj.food + "<br><b><a href='/help/"+obj.id+"'>Help</a></b>";
             console.log(request_string);
             // li.appendChild(document.createTextNode(request_string));
             li.innerHTML = request_string;

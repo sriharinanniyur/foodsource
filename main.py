@@ -10,9 +10,11 @@ all_data = [
         "name" : "John Smith",
         "income" : "Less than $20,000",
         "address" : "4053 Carraci Lane San Jose",
-        "food" : "Bread, 1 loaf"
+        "food" : "Bread, 1 loaf",
+        "id": 0,
     }
 ]
+index = 1
 
 geolocator = Nominatim(user_agent="foodsource")
 
@@ -40,8 +42,10 @@ def order():
             "name" : fname,
             "income" : income,
             "address" : faddress,
-            "food" : food
+            "food" : food,
+            "id" : index
         }
+        index = index + 1
         print(data)
         all_data.append(data)
 
