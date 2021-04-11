@@ -52,6 +52,11 @@ def order():
         
     return render_template("order.html")
 
+@app.route('/help/<index>')
+def help_page(index):
+    return all_data[int(index) - 1] # need to subtract 1 because JS gives us index+1
+# Aadit do ur thing here
+
 @app.route('/getdata')
 def getdata():
     return json.dumps(all_data)

@@ -4,31 +4,46 @@
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"type="text/javascript" charset="utf-8"></script>
     <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"type="text/javascript" charset="utf-8"></script>
-
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
 <style>
+
 .flex-container {
     display: flex;
     flex-direction: row;
+    background-image: url('https://www.thenation.com/wp-content/uploads/2020/04/unhoused-person-nyc-img.jpg');
 }
+
+li {
+    list-style: none; 
+    border: 1px solid white;
+    border-radius: 3px;
+    background-color: rgba(3, 252, 190, 0.6);
+    color: black;
+    padding: 6px;
+};
+
+ul {
+    list-style: none;
+};
+
 </style>
 
 </head>
 
 <body>
 
-<h1>FoodSource</h1>
-<a href="/order"> Order </a>
+<h1 style="font-weight: bold; align: center;">FOODSOURCE</h1>
+<div><button href="/order" class="w3-button w3-indigo"> Request help here! </button></div>
 <br>
 
 <div class="flex-container">
     <div id="mapContainer" style="width: 800px; height: 600px" ></div>
 
-    <div>
+    <div id="requestDiv">
         <header>
-            <h2>Local Requests</h1>
+            <h1 style="color: white; font-weight: bold;">Local Requests</h1>
         </header>
         <ul id="foodRequests">
-            <li>TEST</li>
         </ul>
     </div>
 </div>
@@ -95,15 +110,21 @@ function addDomMarker(map, latitude, longitude, num) {
     li = document.getElementById("request"+num);
     li.style.color = "black";
   };
+  function redirectToHelpPage(evt) {
+    console.log("redirected to help page.");
+    window.open("http://localhost:5000/help/"+num, "_blank");
+  };
 
   var domIcon = new H.map.DomIcon(outerElement, {
     onAttach: function(clonedElement, domIcon, domMarker) {
       clonedElement.addEventListener('mouseover', changeColor);
       clonedElement.addEventListener('mouseout', resetColor);
+      clonedElement.addEventListener('click', redirectToHelpPage);
     },
     onDetach: function(clonedElement, domIcon, domMarker) {
       clonedElement.removeEventListener('mouseover', changeColor);
       clonedElement.removeEventListener('mouseout', resetColor);
+      clonedElement.removeEventListener('click', redirectToHelpPage);
     }
   });
 
