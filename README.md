@@ -1,5 +1,5 @@
 # FoodSource
-
+### by Srihari Nanniyur and Aadit Trivedi
 ## Submitted to AuburnHacks 2021
 ## Devpost - https://devpost.com/software/foodsource-4qpjck
 ## Video - https://youtu.be/J9d-NxqzP0g
