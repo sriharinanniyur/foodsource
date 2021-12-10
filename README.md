@@ -2,7 +2,6 @@
 ### by Srihari Nanniyur and Aadit Trivedi
 ## Submitted to AuburnHacks 2021
 ## Devpost - https://devpost.com/software/foodsource-4qpjck
-## Video - https://youtu.be/J9d-NxqzP0g
 
 ## Inspiration
 Food insecurity has always been a pernicious social problem in the United States, but it has often been overlooked by legislators. Now, the COVID-19 pandemic and subsequent economic depression have greatly exacerbated food insecurity and hunger in America. Access to soup kitchens and other in-person food dispensaries has been cut off by the threat of infection. We wanted to use remote delivery APIs and web-dev essentials to create a community-minded digital solution to this problem - a solution that anyone could contribute to.
